@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>J.A.R.V.I.S. - Personal Intelligence System</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #050b16;
+      color: #e0f7ff;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 25px 10px;
+    }
+
+    h1 {
+      color: #00e5ff;
+      letter-spacing: 4px;
+      text-shadow: 0 0 15px #00e5ff66;
+    }
+
+    .status {
+      color: #00ffae;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    .panel {
+      background: #0b1628;
+      border: 1px solid #12344a;
+      border-radius: 14px;
+      padding: 18px;
+      margin: 15px 0;
+    }
+
+    h2 {
+      color: #00e5ff;
+      font-size: 17px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .market {
+      background: #101e33;
+      border: 1px solid #16425b;
+      padding: 15px;
+      border-radius: 12px;
+    }
+
+    .market strong {
+      display: block;
+      color: #00e5ff;
+      margin-bottom: 8px;
+    }
+
+    .value {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .muted {
+      color: #8298ad;
+      font-size: 12px;
+    }
+
+    button {
+      background: #00bcd4;
+      color: #031018;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    input {
+      background: #07101d;
+      color: white;
+      border: 1px solid #16425b;
+      border-radius: 8px;
+      padding: 12px;
+      width: 100%;
+      margin: 8px 0;
+    }
+
+    .chatbox {
+      margin-top: 15px;
+      padding: 15px;
+      background: #07101d;
+      border-radius: 10px;
+      min-height: 70px;
+      line-height: 1.6;
+      word-wrap: break-word;
+    }
+
+    .orb {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      margin: 20px auto;
+      background: radial-gradient(circle, #00e5ff, #006080, #031018);
+      box-shadow: 0 0 35px #00e5ff77;
+      animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 0 20px #00e5ff55;
+      }
+
+      50% {
+        box-shadow: 0 0 45px #00e5ff99;
+      }
+    }
+
+    .disclaimer {
+      color: #8298ad;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <header>
+      <div class="status">SYSTEM INITIALIZATION</div>
+
+      <div class="orb"></div>
+
+      <h1>J.A.R.V.I.S.</h1>
+
+      <p class="muted">
+        Just A Rather Very Intelligent System
+      </p>
+    </header>
+
+    <section class="panel">
+      <h2>INDIAN MARKET RADAR</h2>
+
+      <div class="grid">
+        <div class="market">
+          <strong>NIFTY 50</strong>
+          <div class="value">--</div>
+          <div class="muted">Awaiting live data</div>
+        </div>
+
+        <div class="market">
+          <strong>SENSEX</strong>
+          <div class="value">--</div>
+          <div class="muted">Awaiting live data</div>
+        </div>
+
+        <div class="market">
+          <strong>BANK NIFTY</strong>
+          <div class="value">--</div>
+          <div class="muted">Awaiting live data</div>
+        </div>
+
+        <div class="market">
+          <strong>INDIA VIX</strong>
+          <div class="value">--</div>
+          <div class="muted">Awaiting live data</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>INTELLIGENCE CENTER</h2>
+
+      <p>Market intelligence modules are being configured.</p>
+
+      <p class="muted">
+        News analysis and alerts will be integrated in future stages.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h2>WATCHLIST</h2>
+
+      <p>RELIANCE</p>
+      <p>HDFC BANK</p>
+      <p>ICICI BANK</p>
+      <p>INFOSYS</p>
+      <p>TCS</p>
+      <p>STATE BANK OF INDIA</p>
+    </section>
+
+    <section class="panel">
+      <h2>PERSONAL ASSISTANT</h2>
+
+      <input
+        type="text"
+        id="question"
+        placeholder="Ask J.A.R.V.I.S. something..."
+      >
+
+      <button onclick="askJarvis()">SEND</button>
+
+      <div class="chatbox" id="messages">
+        J.A.R.V.I.S. is awaiting your command.
+      </div>
+    </section>
+
+    <p class="disclaimer">
+      Prototype interface. Market values and intelligence are not yet
+      connected to live data. This system does not execute trades.
+    </p>
+
+  </div>
+
+  <script>
+    function askJarvis() {
+      const input = document.getElementById("question");
+      const messages = document.getElementById("messages");
+
+      if (!input || !messages) return;
+
+      const text = input.value.trim();
+
+      if (!text) return;
+
+      messages.innerHTML =
+        "YOU: " + text +
+        "<br><br>J.A.R.V.I.S.: I have received your request. My intelligence modules are currently being configured.";
+
+      input.value = "";
+    }
+  </script>
+
+</body>
+</html>
